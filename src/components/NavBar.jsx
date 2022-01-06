@@ -44,6 +44,11 @@ export default function NavBar() {
       path: "/server",
       auth: 1,
     },
+    {
+      name: "Files",
+      path: "/files",
+      auth: 0,
+    },
   ];
 
   const AuthListItems = {
@@ -73,7 +78,7 @@ export default function NavBar() {
         });
     }
   }, [token]);
-  // ! TODO Mobile navbar
+  // TODO Mobile navbar
   return (
     <>
       <nav className="bg-white shadow-lg">
