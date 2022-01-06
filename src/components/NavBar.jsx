@@ -40,14 +40,14 @@ export default function NavBar() {
       auth: false,
     },
     {
-      name: "/server",
+      name: "Server",
       path: "/server",
       auth: 1,
     },
     {
-      name: "Files",
-      path: "/files",
-      auth: 0,
+      name: "Folders",
+      path: "/folders",
+      auth: 1,
     },
   ];
 
@@ -154,12 +154,6 @@ export default function NavBar() {
                     className="p-3 font-medium text-gray-500 rounded hover:bg-blue-500 hover:text-white transition duration-300"
                   >
                     Log In
-                  </Link>
-                  <Link
-                    to="/register"
-                    className="p-3 font-medium text-white bg-blue-500 rounded hover:bg-blue-400 transition duration-300"
-                  >
-                    Sign Up
                   </Link>
                 </div>
               </>

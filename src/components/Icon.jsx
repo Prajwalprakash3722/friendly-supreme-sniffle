@@ -12,10 +12,28 @@ function File({ file }) {
   let fileType = checkFileExtension(file);
   return (
     <>
-      <section class="text-gray-600 body-font">
+      <section class="group text-gray-600 body-font">
         <div class="container px-5 py-24 mx-auto">
-          <div class="flex flex-wrap">
-            <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
+          <div
+            class="flex flex-wrap group-hover:bg-slate-100 cursor-pointer rounded-md"
+            onDoubleClick={() => {
+              if (fileType === "folder") {
+                window.location.href = `/folder/${file}`;
+              } else {
+                window.location.href = `/file/${file}`;
+              }
+            }}
+          >
+            <div
+              class="lg:w-1/4 md:w-1/2 p-4 w-full"
+              onClick={() => {
+                if (fileType === "folder") {
+                  window.location.href = `/folder/${file}`;
+                } else {
+                  window.location.href = `/file/${file}`;
+                }
+              }}
+            >
               <div>
                 {fileType === "folder" ? (
                   <div class="flex items-center justify-center h-12 w-12">

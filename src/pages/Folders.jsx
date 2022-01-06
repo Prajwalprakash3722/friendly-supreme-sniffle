@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import File from "../components/File";
+import File from "../components/Icon";
 import api_link from "../etc/api";
-function Files() {
+function Folders() {
   const [files, setFiles] = useState([]);
   useEffect(() => {
     axios.get(api_link + "/service/list").then((res) => {
-      console.log(res.data);
       setFiles(res.data);
     });
   }, []);
@@ -24,4 +23,4 @@ function Files() {
   );
 }
 
-export default Files;
+export default Folders;
