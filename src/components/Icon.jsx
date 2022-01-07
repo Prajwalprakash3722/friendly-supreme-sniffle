@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import { StackContext } from "../etc/StackContext";
 
 function File({ file }) {
   function checkFileExtension(file) {
@@ -10,6 +11,9 @@ function File({ file }) {
     }
   }
   let fileType = checkFileExtension(file);
+
+  const FolderStructure = StackContext;
+  console.log(FolderStructure);
   return (
     <>
       <section class="group text-gray-600 body-font">
@@ -19,6 +23,7 @@ function File({ file }) {
             onDoubleClick={() => {
               if (fileType === "folder") {
                 window.location.href = `/folder/${file}`;
+                FolderStructure.push(file);
               } else {
                 window.location.href = `/file/${file}`;
               }

@@ -1,0 +1,15 @@
+pre {
+  width: 90%;
+  padding: 0;
+  margin: 0;
+  overflow: auto;
+  overflow-y: hidden;
+  font-size: 12px;
+  line-height: 20px;
+  border: 1px solid #777;
+  padding: 25px;
+}
+pre code {
+  padding: 10px;
+  color: rgb(206, 206, 206);
+}
