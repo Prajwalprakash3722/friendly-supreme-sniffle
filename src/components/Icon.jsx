@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { StackContext } from "../etc/StackContext";
 
 function File({ file }) {
   function checkFileExtension(file) {
@@ -12,50 +11,86 @@ function File({ file }) {
   }
   let fileType = checkFileExtension(file);
 
-  const FolderStructure = StackContext;
-  console.log(FolderStructure);
   return (
     <>
-      <section class="group text-gray-600 body-font">
-        <div class="container px-5 py-24 mx-auto">
+      <section className="group text-gray-600 body-font">
+        <div className="container px-5 py-24 mx-auto">
           <div
-            class="flex flex-wrap group-hover:bg-slate-100 cursor-pointer rounded-md"
-            onDoubleClick={() => {
-              if (fileType === "folder") {
-                window.location.href = `/folder/${file}`;
-                FolderStructure.push(file);
-              } else {
-                window.location.href = `/file/${file}`;
-              }
-            }}
+            className="flex flex-wrap group-hover:bg-slate-100 cursor-pointer rounded-md"
+            // onDoubleClick={() => {
+            //   if (fileType === "folder") {
+            //     localStorage.setItem("currentFolder", file);
+            //     const new_path =
+            //       localStorage.getItem("currentFolder") + "/" + file;
+            //     window.location.href = new_path;
+            //     FolderStructure.push(file);
+            //   } else {
+            //     console.log(window.location.href);
+            //     window.location.href = `/file/${file}`;
+            //   }
+            // }}
           >
-            <div
-              class="lg:w-1/4 md:w-1/2 p-4 w-full"
-              onClick={() => {
-                if (fileType === "folder") {
-                  window.location.href = `/folder/${file}`;
-                } else {
-                  window.location.href = `/file/${file}`;
-                }
-              }}
-            >
+            <div className="lg:w-1/4 md:w-1/2 p-4 w-full">
               <div>
                 {fileType === "folder" ? (
-                  <div class="flex items-center justify-center h-12 w-12">
+                  <div className="flex items-center justify-center h-12 w-12">
                     <img
                       src="https://img.icons8.com/color/240/000000/folder-invoices--v2.png"
                       alt="folder"
+                      onClick={() => {
+                        let old_path = window.location.href;
+                        if (old_path.includes("folders")) {
+                          let elements = old_path.split("/");
+                          let new_path = elements.join("/");
+                          new_path = new_path.replace(
+                            "folders",
+                            "folder/" + file
+                          );
+                          window.location.href = new_path;
+                        } else {
+                          old_path = window.location.href;
+                          let elements = old_path.split("/");
+                          elements.push(file);
+                          let new_path = elements.join("/");
+                          window.location.href = new_path;
+                          console.log(new_path);
+                        }
+                      }}
                     />
                   </div>
                 ) : (
-                  <div class="flex items-center justify-center h-12 w-120">
+                  <div className="flex items-center justify-center h-12 w-120">
                     <img
                       src="https://img.icons8.com/color/240/000000/file.png"
                       alt="file"
+                      onClick={() => {
+                        let old_path = window.location.href;
+                        if (old_path.includes("folders")) {
+                          let elements = old_path.split("/");
+                          let new_path = elements.join("/");
+                          new_path = new_path.replace(
+                            "folders",
+                            "file/" + file
+                          );
+                          window.location.href = new_path;
+                        } else {
+                          let old_path = window.location.href;
+                          if (old_path.includes("folder")) {
+                            let elements = old_path.split("/");
+                            elements.push(file);
+                            // console.log(elements);
+                            const actual = elements.slice(4, elements.length);
+                            // console.log("ac", actual);
+                            let new_path = actual.join("-");
+                            console.log(new_path);
+                            window.location.href = `/file/${new_path}`;
+                          }
+                        }
+                      }}
                     />
                   </div>
                 )}
-                <h3 class="text-gray-500 tracking-widest title-font text-lg">
+                <h3 className="text-gray-500 tracking-widest title-font text-lg">
                   {file}
                 </h3>
               </div>
